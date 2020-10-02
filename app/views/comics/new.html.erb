@@ -1,0 +1,14 @@
+<h1>New Comic</h1>
+
+<%= form_with scope: :comic, url: comics_path, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :author %>
+    <%= form.text_field :artist %>
+    <%= form.text_field :editor %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
