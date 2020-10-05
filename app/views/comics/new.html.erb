@@ -3,11 +3,20 @@
 <%= form_with scope: :comic, url: comics_path, local: true do |form| %>
   <p>
     <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <%= form.label :issue %>
+    <%= form.text_field :issue%>
+  </p>
+  <p>
+    <%= form.label :author%><br>
     <%= form.text_field :author %>
+  </p>
+    <%= form.label :artist %><br>
     <%= form.text_field :artist %>
+  <p>
+    <%= form.label :editor%><br>
     <%= form.text_field :editor %>
   </p>
-
   <p>
     <%= form.submit %>
   </p>
