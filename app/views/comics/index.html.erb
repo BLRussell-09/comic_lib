@@ -1,0 +1,16 @@
+<%= link_to  "New Comics?", new_comic_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Issue Number</th>
+    <th></th>
+  </tr>
+
+  <% @comics.each do |comic| %>
+    <tr>
+      <td><%= comic.title %></td>
+      <td><%= comic.issue %></td>
+    </tr>
+  <% end %>
+</table>

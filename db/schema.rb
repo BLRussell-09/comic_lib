@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_163956) do
+ActiveRecord::Schema.define(version: 2020_10_06_144853) do
 
   create_table "artist_comics", force: :cascade do |t|
     t.integer "comic_id"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 2020_10_05_163956) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "artists_comics", id: false, force: :cascade do |t|
+    t.integer "artist_id", null: false
+    t.integer "comic_id", null: false
   end
 
   create_table "author_comics", force: :cascade do |t|
@@ -38,11 +43,23 @@ ActiveRecord::Schema.define(version: 2020_10_05_163956) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "authors_comics", id: false, force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.integer "comic_id", null: false
+    t.index "\"authors_id\"", name: "index_authors_comics_on_authors_id"
+    t.index "\"comics_id\"", name: "index_authors_comics_on_comics_id"
+  end
+
   create_table "comics", force: :cascade do |t|
     t.string "title"
     t.integer "issue"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comics_editors", id: false, force: :cascade do |t|
+    t.integer "editor_id", null: false
+    t.integer "comic_id", null: false
   end
 
   create_table "editor_comics", force: :cascade do |t|
