@@ -11,6 +11,13 @@
     <tr>
       <td><%= comic.title %></td>
       <td><%= comic.issue %></td>
+      <td><%= link_to 'Show', comic_path(comic)%></td>
+      <td>
+        <%= link_to 'Destroy', comic_path(comic),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this item?'}
+        %>
+      </td>
     </tr>
   <% end %>
 </table>
