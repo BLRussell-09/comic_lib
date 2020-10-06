@@ -1,4 +1,3 @@
 class Author < ApplicationRecord
-  has_many :author_comics, inverse_of: :author
-  has_many :comics, through: :author_comics
+  has_and_belongs_to_many :comics
 end
