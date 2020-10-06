@@ -36,6 +36,13 @@ class ComicsController < ApplicationController
     @editor = @comic.editors.first()
   end
 
+  def destroy
+    @comic = Comic.find(params[:id])
+    @comic.destroy
+
+    redirect_to comics_path
+  end
+
   private
     def comic_params
       params.require(:comic).permit(:title, :issue,
