@@ -30,16 +30,31 @@ class ComicsController < ApplicationController
   end
 
   def show
-    @comic = Comic.find(params[:id])
-    @author = @comic.authors.first()
-    @artist = @comic.artists.first()
-    @editor = @comic.editors.first()
+    get_show_comic()
+  end
+
+  def edit
+    get_show_comic()
+  end
+
+  def update
+    ActiveRecord::Base.transaction do
+      @comic = Comic.find(params[:id])
+      @author = @comic.authors.first()
+      @artist = @comic.artists.first()
+      @editor = @comic.editors.first()
+
+      @comic.update(comic_params)
+      @author.update(name: params['comic']['author']['name'])
+      @artist.update(name: params['comic']['artist']['name'])
+      @editor.update(name: params['comic']['editor']['name'])
+      redirect_to @comic
+    end
   end
 
   def destroy
     @comic = Comic.find(params[:id])
     @comic.destroy
-
     redirect_to comics_path
   end
 
@@ -50,6 +65,13 @@ class ComicsController < ApplicationController
         artist_attributes: [:name],
         editor_attributes: [:name]
       )
+    end
+
+    def get_show_comic
+      @comic = Comic.find(params[:id])
+      @author = @comic.authors.first()
+      @artist = @comic.artists.first()
+      @editor = @comic.editors.first()
     end
 
 end
